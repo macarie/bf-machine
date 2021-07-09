@@ -1,0 +1,57 @@
+{
+  "name": "bs-machine",
+  "version": "0.0.1",
+  "description": "A Brainfuck virtual machine",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "compile:clean": "rimraf dist",
+    "compile:declaration": "tsc --emitdeclarationonly",
+    "compile:transpile": "esbuild --target=esnext --outdir=dist src/**.ts src/**/*.ts",
+    "compile:library": "run-p -s compile:declaration compile:transpile",
+    "compile": "run-s -s compile:clean compile:library",
+    "lint:tsc": "tsc --noemit",
+    "lint:standard": "ts-standard",
+    "lint": "run-p -s lint:*",
+    "test": "c8 uvu -r esm -r esbuild-register tests",
+    "coverage": "c8 report --reporter=text-lcov | codecov --pipe --disable=gcov"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "files": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macarie/bs-machine.git"
+  },
+  "author": {
+    "name": "Raul Macarie",
+    "email": "raul@macarie.me",
+    "url": "https://macarie.me"
+  },
+  "bugs": {
+    "url": "https://github.com/macarie/bs-machine/issues"
+  },
+  "homepage": "https://github.com/macarie/bs-machine#readme",
+  "keywords": [],
+  "devDependencies": {
+    "@types/node": "^16.3.0",
+    "c8": "^7.7.3",
+    "codecov": "^3.8.2",
+    "esbuild": "^0.12.15",
+    "esbuild-register": "^2.6.0",
+    "esm": "^3.2.25",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "ts-standard": "^10.0.0",
+    "typescript": "^4.3.5",
+    "uvu": "^0.5.1"
+  }
+}
