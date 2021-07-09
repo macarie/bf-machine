@@ -1,5 +1,5 @@
 {
-  "name": "bs-machine",
+  "name": "bf-machine",
   "version": "0.0.1",
   "description": "A Brainfuck virtual machine",
   "license": "MIT",
@@ -29,7 +29,7 @@
   "files": [],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/macarie/bs-machine.git"
+    "url": "git+https://github.com/macarie/bf-machine.git"
   },
   "author": {
     "name": "Raul Macarie",
@@ -37,9 +37,9 @@
     "url": "https://macarie.me"
   },
   "bugs": {
-    "url": "https://github.com/macarie/bs-machine/issues"
+    "url": "https://github.com/macarie/bf-machine/issues"
   },
-  "homepage": "https://github.com/macarie/bs-machine#readme",
+  "homepage": "https://github.com/macarie/bf-machine#readme",
   "keywords": [],
   "devDependencies": {
     "@types/node": "^16.3.0",

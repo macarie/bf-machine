@@ -1,4 +1,4 @@
-# [bs-machine](https://github.com/macarie/bs-machine)
+# [bf-machine](https://github.com/macarie/bf-machine)
 
 ## License
 
