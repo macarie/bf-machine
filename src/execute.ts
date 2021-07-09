@@ -2,7 +2,14 @@ import type { Machine } from './types/machine.js'
 
 import { InstructionSet } from './types/instruction-set.js'
 
-export const execute = async ({ instructions, instructionPointer, memory, dataPointer, input, output }: Machine): Promise<void> => {
+export const execute = async ({
+  instructions,
+  instructionPointer,
+  memory,
+  dataPointer,
+  input,
+  output
+}: Machine): Promise<Machine['memory']> => {
   const { length: instructionsLength } = instructions
 
   while (instructionPointer < instructionsLength) {
@@ -69,4 +76,6 @@ export const execute = async ({ instructions, instructionPointer, memory, dataPo
       }
     }
   }
+
+  return memory
 }

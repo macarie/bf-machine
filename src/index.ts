@@ -7,8 +7,8 @@ export const run = async ({ code = '', input, output }: {
   code: string
   input: Machine['input']
   output: Machine['output']
-}): Promise<void> => {
+}): Promise<Machine['memory']> => {
   const machine = createMachine({ code, input, output })
 
-  await execute(machine)
+  return await execute(machine)
 }
