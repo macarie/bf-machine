@@ -5,8 +5,7 @@
     "moduleResolution": "Node",
     "module": "ESNext",
     "lib": [
-      "ESNext",
-      "DOM"
+      "ESNext"
     ],
     "strict": true,
     "noImplicitAny": true,
