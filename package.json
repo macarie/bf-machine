@@ -20,7 +20,9 @@
     "lint:tsc": "tsc --noemit",
     "lint:standard": "ts-standard",
     "lint": "run-p -s lint:*",
-    "test": "uvu -r esbuild-runner/register src/__tests__"
+    "test:uvu": "c8 --all --exclude dist/types --exclude dist/__tests__ --exclude src uvu dist/__tests__",
+    "test": "run-s -s \"compile:transpile -- --sourcemap=inline\" test:uvu",
+    "coverage": "c8 report --reporter=text-lcov | codecov --pipe --disable=gcov"
   },
   "engines": {
     "node": ">=12"
