@@ -13,7 +13,8 @@ export const transpile = (code: string): Instruction[] => {
 
   for (let index = 0; index < characters.length; index += 1) {
     const character = characters[index]
-    const lastInstruction = instructions[lastInstructionIndex] ?? {}
+    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+    const lastInstruction = instructions[lastInstructionIndex] || {}
 
     switch (character) {
       case InstructionSet.Plus: {
