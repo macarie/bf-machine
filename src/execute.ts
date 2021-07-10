@@ -70,10 +70,6 @@ export const execute = async ({
 
         break
       }
-
-      default: {
-        instructionPointer += 1
-      }
     }
   }
 
