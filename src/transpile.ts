@@ -1,6 +1,7 @@
 import type { Instruction } from './types/instruction.js'
 
-import { InstructionSet } from './types/instruction-set.js'
+import { BFInstructionSet } from './types/bf-instruction-set.js'
+import { VMInstructionSet } from './types/vm-instruction-set.js'
 
 export const transpile = (code: string): Instruction[] => {
   const characters = [...code]
@@ -17,12 +18,12 @@ export const transpile = (code: string): Instruction[] => {
     const lastInstruction = instructions[lastInstructionIndex] || {}
 
     switch (character) {
-      case InstructionSet.Plus: {
-        if (lastInstruction.type === InstructionSet.Plus) {
+      case BFInstructionSet.Plus: {
+        if (lastInstruction.type === VMInstructionSet.Add) {
           lastInstruction.argument += 1
         } else {
           instructions.push({
-            type: InstructionSet.Plus,
+            type: VMInstructionSet.Add,
             argument: 1
           })
 
@@ -32,12 +33,12 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.Minus: {
-        if (lastInstruction.type === InstructionSet.Minus) {
+      case BFInstructionSet.Minus: {
+        if (lastInstruction.type === VMInstructionSet.Add) {
           lastInstruction.argument -= 1
         } else {
           instructions.push({
-            type: InstructionSet.Minus,
+            type: VMInstructionSet.Add,
             argument: -1
           })
 
@@ -47,12 +48,12 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.Right: {
-        if (lastInstruction.type === InstructionSet.Right) {
+      case BFInstructionSet.Right: {
+        if (lastInstruction.type === VMInstructionSet.Shift) {
           lastInstruction.argument += 1
         } else {
           instructions.push({
-            type: InstructionSet.Right,
+            type: VMInstructionSet.Shift,
             argument: 1
           })
 
@@ -62,12 +63,12 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.Left: {
-        if (lastInstruction.type === InstructionSet.Left) {
+      case BFInstructionSet.Left: {
+        if (lastInstruction.type === VMInstructionSet.Shift) {
           lastInstruction.argument -= 1
         } else {
           instructions.push({
-            type: InstructionSet.Left,
+            type: VMInstructionSet.Shift,
             argument: -1
           })
 
@@ -77,12 +78,12 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.PutChar: {
-        if (lastInstruction.type === InstructionSet.PutChar) {
+      case BFInstructionSet.PutChar: {
+        if (lastInstruction.type === VMInstructionSet.PutChar) {
           lastInstruction.argument += 1
         } else {
           instructions.push({
-            type: InstructionSet.PutChar,
+            type: VMInstructionSet.PutChar,
             argument: 1
           })
 
@@ -92,12 +93,12 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.ReadChar: {
-        if (lastInstruction.type === InstructionSet.ReadChar) {
+      case BFInstructionSet.ReadChar: {
+        if (lastInstruction.type === VMInstructionSet.ReadChar) {
           lastInstruction.argument += 1
         } else {
           instructions.push({
-            type: InstructionSet.ReadChar,
+            type: VMInstructionSet.ReadChar,
             argument: 1
           })
 
@@ -107,11 +108,11 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.JumpIfZero: {
+      case BFInstructionSet.JumpIfZero: {
         lastInstructionIndex += 1
 
         instructions.push({
-          type: InstructionSet.JumpIfZero,
+          type: VMInstructionSet.JumpIfZero,
           argument: lastInstructionIndex
         })
         jumpIfZeroIndexes.add(lastInstructionIndex)
@@ -119,11 +120,11 @@ export const transpile = (code: string): Instruction[] => {
         break
       }
 
-      case InstructionSet.JumpIfNotZero: {
+      case BFInstructionSet.JumpIfNotZero: {
         lastInstructionIndex += 1
 
         instructions.push({
-          type: InstructionSet.JumpIfNotZero,
+          type: VMInstructionSet.JumpIfNotZero,
           argument: lastInstructionIndex
         })
         jumpIfNotZeroIndexes.add(lastInstructionIndex)

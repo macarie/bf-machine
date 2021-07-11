@@ -1,6 +1,6 @@
 import type { Machine } from './types/machine.js'
 
-import { InstructionSet } from './types/instruction-set.js'
+import { VMInstructionSet } from './types/vm-instruction-set.js'
 
 export const execute = async ({
   instructions,
@@ -16,30 +16,28 @@ export const execute = async ({
     const instruction = instructions[instructionPointer]
 
     switch (instruction.type) {
-      case InstructionSet.Plus:
-      case InstructionSet.Minus: {
+      case VMInstructionSet.Add: {
         memory[dataPointer] += instruction.argument
         instructionPointer += 1
 
         break
       }
 
-      case InstructionSet.Right:
-      case InstructionSet.Left: {
+      case VMInstructionSet.Shift: {
         dataPointer += instruction.argument
         instructionPointer += 1
 
         break
       }
 
-      case InstructionSet.PutChar: {
+      case VMInstructionSet.PutChar: {
         output(String.fromCharCode(memory[dataPointer]).repeat(instruction.argument))
         instructionPointer += 1
 
         break
       }
 
-      case InstructionSet.ReadChar: {
+      case VMInstructionSet.ReadChar: {
         const repeat = instruction.argument - 1
         for (let index = 0; index < repeat; index += 1) {
           await input()
@@ -51,7 +49,7 @@ export const execute = async ({
         break
       }
 
-      case InstructionSet.JumpIfZero: {
+      case VMInstructionSet.JumpIfZero: {
         if (memory[dataPointer] === 0) {
           instructionPointer = instruction.argument
         } else {
@@ -61,7 +59,7 @@ export const execute = async ({
         break
       }
 
-      case InstructionSet.JumpIfNotZero: {
+      case VMInstructionSet.JumpIfNotZero: {
         if (memory[dataPointer] !== 0) {
           instructionPointer = instruction.argument
         } else {

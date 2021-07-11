@@ -1,6 +1,6 @@
-import type { InstructionSet } from './instruction-set.js'
+import type { VMInstructionSet } from './vm-instruction-set.js'
 
 export interface Instruction {
-  type: InstructionSet
+  type: VMInstructionSet
   argument: number
 }

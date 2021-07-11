@@ -1,4 +1,4 @@
-export enum InstructionSet {
+export enum BFInstructionSet {
   Plus = '+',
   Minus = '-',
   Right = '>',
