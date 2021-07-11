@@ -4,7 +4,7 @@ import type { Machine } from '../types/machine.js'
 import { suite } from 'uvu'
 import * as assert from 'uvu/assert'
 
-import { VMInstructionSet } from '../types/VM-instruction-set.js'
+import { VMInstructionSet } from '../types/vm-instruction-set.js'
 
 import { execute } from '../execute.js'
 
